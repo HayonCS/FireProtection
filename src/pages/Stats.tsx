@@ -276,7 +276,8 @@ export const Stats: React.FC<{
               return {
                 id: row[0],
                 date: new Date(row[1] + " " + row[2]),
-                time: new Date(row[1] + " " + row[2]),
+                timeStart: new Date(row[1] + " " + row[2]),
+                timeEnd: new Date(row[1] + " " + row[2]),
                 shift: row[3],
                 part: row[4],
                 board: row[5],
@@ -443,9 +444,21 @@ export const Stats: React.FC<{
       },
     },
     {
-      field: "time",
-      headerName: "Time",
-      width: 110,
+      field: "timeStart",
+      headerName: "Start Time",
+      width: 150,
+      renderCell: function cellDisplay(cellValue: any) {
+        return (
+          <div className={classes.cellStyle}>
+            {cellValue.value.toLocaleTimeString()}
+          </div>
+        );
+      },
+    },
+    {
+      field: "timeEnd",
+      headerName: "End Time",
+      width: 140,
       renderCell: function cellDisplay(cellValue: any) {
         return (
           <div className={classes.cellStyle}>
@@ -548,7 +561,6 @@ export const Stats: React.FC<{
       field: "changeover",
       headerName: "Changeover",
       flex: 1,
-      hide: true,
       renderCell: function cellDisplay(cellValue: any) {
         const label = getHHMMSS(cellValue.value);
         return <div className={classes.cellStyle}>{label}</div>;

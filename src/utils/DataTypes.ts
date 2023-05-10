@@ -51,7 +51,8 @@ export interface WaveStats {
 export interface WaveDataRows {
   id: number;
   date: Date;
-  time: Date;
+  timeStart: Date;
+  timeEnd: Date;
   shift: number;
   part: string;
   board: string;
