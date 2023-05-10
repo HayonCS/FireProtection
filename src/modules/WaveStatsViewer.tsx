@@ -241,7 +241,8 @@ export const WaveStatsViewer: React.FC<{}> = (props) => {
     {
       id: 1,
       date: new Date(),
-      time: new Date(),
+      timeStart: new Date(),
+      timeEnd: new Date(),
       shift: 1,
       part: "123-4567",
       board: "280-0199",
@@ -292,7 +293,8 @@ export const WaveStatsViewer: React.FC<{}> = (props) => {
               return {
                 id: row[0],
                 date: new Date(row[1] + " " + row[2]),
-                time: new Date(row[1] + " " + row[2]),
+                timeStart: new Date(row[1] + " " + row[2]),
+                timeEnd: new Date(row[1] + " " + row[2]),
                 shift: row[3],
                 part: row[4],
                 board: row[5],

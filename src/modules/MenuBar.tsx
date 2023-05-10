@@ -42,6 +42,7 @@ const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
     textAlign: "left",
+    cursor: "default",
   },
   logo: {
     fontSize: 150,
