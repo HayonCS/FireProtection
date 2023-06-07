@@ -42,7 +42,6 @@ const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
     textAlign: "left",
-    cursor: "default",
   },
   logo: {
     fontSize: 150,
@@ -119,7 +118,11 @@ export const MenuBar: React.FC<{}> = (props) => {
             className={classes.title}
             component={"span"}
           >
-            <Box fontWeight="normal" fontSize="18px">
+            <Box
+              fontWeight="normal"
+              fontSize="18px"
+              style={{ cursor: "default" }}
+            >
               {"FIRE PROTECTION 311T"}
             </Box>
           </Typography>

@@ -111,6 +111,20 @@ export const getFinalStats = (data: WaveDataRows[]) => {
                 3600000) /
               60000;
             finalData.push(stat);
+          } else if (finalData.length > 0) {
+            let stat = { ...row };
+            let match = { ...finalData[finalData.length - 1] };
+            stat.timeStart = startTime;
+            stat.changeover =
+              (((startTime.getTime() - match.timeEnd.getTime()) % 86400000) %
+                3600000) /
+              60000;
+            finalData.push(stat);
+          } else {
+            let stat = { ...row };
+            stat.timeStart = startTime;
+            stat.changeover = 0;
+            finalData.push(stat);
           }
         }
       }
