@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   CartesianGrid,
   Label,
-  Legend,
   Line,
   LineChart,
   ReferenceLine,
@@ -11,19 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { DataGrid } from "@mui/x-data-grid";
-import {
-  AssetTestData,
-  DashboardGraphData,
-  WaveData,
-} from "../utils/DataTypes";
+import { WaveData } from "../utils/DataTypes";
 import {
   Backdrop,
   CircularProgress,
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { GentexBlue } from "../styles/theme";
 import { getHHMMSS } from "../utils/DateUtility";
 
 const headers = new Headers();

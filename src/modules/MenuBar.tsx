@@ -14,7 +14,7 @@ import {
   Typography,
   IconButton,
 } from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+import { Build, Dashboard, Equalizer, Menu } from "@material-ui/icons";
 import * as React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Chevron } from "../icons/Chevron";
@@ -75,7 +75,6 @@ export const MenuBar: React.FC<{}> = (props) => {
   const navigate = useNavigate();
 
   const handleMenuClick = (event: any) => {
-    //setAnchorEl(event.currentTarget);
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
@@ -121,9 +120,9 @@ export const MenuBar: React.FC<{}> = (props) => {
             <Box
               fontWeight="normal"
               fontSize="18px"
-              style={{ cursor: "default" }}
+              style={{ cursor: "default", userSelect: "none" }}
             >
-              {"FIRE PROTECTION 311T"}
+              {"FIRE PROTECTION 311T🔥"}
             </Box>
           </Typography>
         </Toolbar>
@@ -179,6 +178,7 @@ export const MenuBar: React.FC<{}> = (props) => {
                   navigate("/Stats");
                 }}
               >
+                <Equalizer style={{ color: "#FFF" }} />
                 <Typography
                   variant="body1"
                   className={classes.title}
@@ -201,6 +201,7 @@ export const MenuBar: React.FC<{}> = (props) => {
                   navigate("/Dashboard");
                 }}
               >
+                <Dashboard style={{ color: "#FFF" }} />
                 <Typography
                   variant="body1"
                   className={classes.title}
@@ -215,6 +216,29 @@ export const MenuBar: React.FC<{}> = (props) => {
                     }}
                   >
                     Dashboard
+                  </Box>
+                </Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={(event) => {
+                  navigate("/Resources");
+                }}
+              >
+                <Build style={{ color: "#FFF" }} />
+                <Typography
+                  variant="body1"
+                  className={classes.title}
+                  component={"span"}
+                >
+                  <Box
+                    style={{
+                      paddingTop: "2px",
+                      paddingLeft: "6px",
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                    }}
+                  >
+                    Resources
                   </Box>
                 </Typography>
               </MenuItem>

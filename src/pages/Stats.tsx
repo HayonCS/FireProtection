@@ -5,7 +5,6 @@ import {
   Button,
   Checkbox,
   CircularProgress,
-  debounce,
   FormControlLabel,
   makeStyles,
   Paper,
@@ -14,33 +13,16 @@ import {
   Tabs,
   Typography,
 } from "@material-ui/core";
-import { getProcessData, getProcessData1 } from "../utils/MES";
 import SwipeableViews from "react-swipeable-views";
-import { AssetDash } from "../modules/AssetDash";
+import { getHHMMSS } from "../utils/DateUtility";
 import {
-  getDateStringCurrent,
-  getDateStringNext,
-  getHHMMSS,
-  getTimeStringConnection,
-} from "../utils/DateUtility";
-import {
-  AssetTestData,
-  DashboardGraphData,
   ManualBuildDataAll,
   ManualBuildDataStation,
   WaveDataRows,
 } from "../utils/DataTypes";
-import {
-  getAssetGraphData,
-  getAssetTestData,
-  getFinalStats,
-  getRomboDashboardData,
-  getRomboGraphData,
-} from "../utils/DataUtility";
+import { getFinalStats } from "../utils/DataUtility";
 import { MenuBar } from "../modules/MenuBar";
 import { useLocation } from "react-router-dom";
-import { WaveDashboard } from "../modules/WaveDashboard";
-import { WaveStatsViewer } from "../modules/WaveStatsViewer";
 import {
   DataGrid,
   GridColumns,
@@ -64,7 +46,6 @@ const options: RequestInit = {
 
 const useStyles = makeStyles(() => ({
   root: {
-    //textAlign: "center",
     width: "100%",
     height: "100%",
   },
@@ -80,7 +61,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: "0px",
   },
   paperStyle: {
-    //display: "inline",
     backgroundColor: "#F5F5F5",
     alignItems: "center",
     flexDirection: "column",
@@ -89,7 +69,6 @@ const useStyles = makeStyles(() => ({
     height: "calc(100vh - 48px)",
   },
   paperStyle1: {
-    //display: "inline",
     backgroundColor: "#F5F5F5",
     alignItems: "center",
     flexDirection: "column",
@@ -110,8 +89,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    //rowGap: "20px",
-    //marginBottom: "30px",
   },
   gridItem: {
     justifyContent: "center",
@@ -146,18 +123,10 @@ function TabPanel(props: any) {
       {...other}
     >
       {value === index && (
-        //<Box >
         <Typography component={"span"}>{children}</Typography>
-        //</Box>
       )}
     </div>
   );
-}
-
-function uniq(a: string[]) {
-  return a.sort().filter(function (item: any, pos: number, ary: any[]) {
-    return !pos || item !== ary[pos - 1];
-  });
 }
 
 function a11yProps(index: any) {
@@ -167,11 +136,7 @@ function a11yProps(index: any) {
   };
 }
 
-export const Stats: React.FC<{
-  //asset: string;
-}> = (p) => {
-  const props = useLocation().state;
-
+export const Stats: React.FC<{}> = (p) => {
   document.title = "Stats | Fire Protection";
 
   const classes = useStyles();

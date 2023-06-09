@@ -1,25 +1,7 @@
 import * as React from "react";
-import {
-  CartesianGrid,
-  Label,
-  Legend,
-  Line,
-  LineChart,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import {
-  AssetTestData,
-  DashboardGraphData,
-  WaveDataRows,
-  WaveStats,
-} from "../utils/DataTypes";
-import { makeStyles, Paper, Typography } from "@material-ui/core";
-import { GentexBlue } from "../styles/theme";
+import { WaveDataRows, WaveStats } from "../utils/DataTypes";
+import { makeStyles, Paper } from "@material-ui/core";
 import { getHHMMSS } from "../utils/DateUtility";
 import { getFinalStats } from "../utils/DataUtility";
 
@@ -37,13 +19,6 @@ const useStyles = makeStyles(() => ({
     height: "100%",
     cursor: "default",
   },
-  title: {
-    alignSelf: "center",
-    fontSize: "24px",
-    fontWeight: "bold",
-    color: "#000",
-    paddingRight: "10px",
-  },
   cellStyle: {
     padding: "none",
     alignItems: "left",
@@ -51,23 +26,6 @@ const useStyles = makeStyles(() => ({
     fontSize: "12px",
     fontFamily: "inherit",
     fontWeight: "bold",
-  },
-  labelData1: {
-    alignSelf: "center",
-    fontSize: "64px",
-    fontWeight: "bold",
-    color: "#003BFF",
-  },
-  labelPart: {
-    alignSelf: "center",
-    fontSize: "112px",
-    fontWeight: "bold",
-    color: "#000",
-    paddingLeft: "calc(100vw / 2 - 530px)",
-    marginTop: "-30px",
-  },
-  divTotals: {
-    display: "flex",
   },
 }));
 

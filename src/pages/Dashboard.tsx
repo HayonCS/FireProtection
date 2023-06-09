@@ -1,38 +1,19 @@
 import * as React from "react";
 import {
-  Backdrop,
   Box,
-  CircularProgress,
-  debounce,
   makeStyles,
   Paper,
   Tab,
   Tabs,
   Typography,
 } from "@material-ui/core";
-import { getProcessData, getProcessData1 } from "../utils/MES";
 import SwipeableViews from "react-swipeable-views";
-import { AssetDash } from "../modules/AssetDash";
-import {
-  getDateStringCurrent,
-  getDateStringNext,
-  getTimeStringConnection,
-} from "../utils/DateUtility";
-import { AssetTestData, DashboardGraphData } from "../utils/DataTypes";
-import {
-  getAssetGraphData,
-  getAssetTestData,
-  getRomboDashboardData,
-  getRomboGraphData,
-} from "../utils/DataUtility";
 import { MenuBar } from "../modules/MenuBar";
-import { useLocation } from "react-router-dom";
 import { WaveDashboard } from "../modules/WaveDashboard";
 import { ManualBuildDashboard } from "../modules/ManualBuildDashboard";
 
 const useStyles = makeStyles(() => ({
   root: {
-    //textAlign: "center",
     width: "100%",
     height: "100%",
   },
@@ -48,7 +29,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: "0px",
   },
   paperStyle: {
-    //display: "inline",
     backgroundColor: "#F5F5F5",
     alignItems: "center",
     flexDirection: "column",
@@ -68,8 +48,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    //rowGap: "20px",
-    //marginBottom: "30px",
   },
   gridItem: {
     justifyContent: "center",
@@ -104,12 +82,6 @@ function TabPanel(props: any) {
   );
 }
 
-function uniq(a: string[]) {
-  return a.sort().filter(function (item: any, pos: number, ary: any[]) {
-    return !pos || item != ary[pos - 1];
-  });
-}
-
 function a11yProps(index: any) {
   return {
     id: `full-width-tab-${index}`,
@@ -117,16 +89,10 @@ function a11yProps(index: any) {
   };
 }
 
-export const Dashboard: React.FC<{
-  //asset: string;
-}> = (p) => {
-  const props = useLocation().state;
-
+export const Dashboard: React.FC<{}> = (p) => {
   document.title = "Dashboard | Fire Protection";
 
   const classes = useStyles();
-
-  const [loading, setLoading] = React.useState(false);
 
   const [tabValue, setTabValue] = React.useState(0);
 
@@ -137,19 +103,6 @@ export const Dashboard: React.FC<{
   return (
     <div className={classes.root}>
       <MenuBar />
-      <Backdrop
-        open={loading}
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          color: "#fff",
-          zIndex: 1,
-          flexDirection: "column",
-          marginTop: "48px",
-        }}
-      >
-        <CircularProgress color="inherit" style={{ marginBottom: "10px" }} />
-        <Typography>Loading...</Typography>
-      </Backdrop>
       <Paper className={classes.paperStyle}>
         <div className={classes.gridLayout}>
           <Paper className={classes.tabBar}>

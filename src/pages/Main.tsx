@@ -1,23 +1,19 @@
 import * as React from "react";
 import {
-  Box,
   Button,
-  FormControl,
-  FormHelperText,
-  InputLabel,
+  Fab,
   makeStyles,
-  MenuItem,
   Paper,
-  Select,
   Tab,
   Tabs,
-  TextField,
   Typography,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import SwipeableViews from "react-swipeable-views";
-import PropTypes from "prop-types";
 import { MenuBar } from "../modules/MenuBar";
+import { Resources } from "../modules/Resources";
+import { Dashboard, Equalizer } from "@material-ui/icons";
+import { About } from "../modules/About";
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -90,7 +86,7 @@ function a11yProps(index: any) {
 }
 
 export const Main: React.FC<{
-  parameter?: boolean;
+  tabIndex?: number;
 }> = (props) => {
   document.title = "Fire Protection 311T";
 
@@ -98,13 +94,17 @@ export const Main: React.FC<{
 
   const navigate = useNavigate();
 
-  const [tabValue, setTabValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(props.tabIndex ?? 0);
 
   return (
     <div className={classes.app}>
       <MenuBar />
       <header className={classes.appHeader}>
-        <h1>Fire Protection</h1>
+        <div style={{ cursor: "default", userSelect: "none" }}>
+          <Typography style={{ fontSize: "48px", fontWeight: "bold" }}>
+            {"Fire Protection🔥"}
+          </Typography>
+        </div>
       </header>
       <Paper className={classes.paperStyle}>
         <div className={classes.gridLayout}>
@@ -119,14 +119,19 @@ export const Main: React.FC<{
               centered
             >
               <Tab
-                label="Stats"
+                label="Home"
                 className={classes.tabStyle}
                 {...a11yProps(0)}
               />
               <Tab
-                label="Dashboard"
+                label="Resources"
                 className={classes.tabStyle}
                 {...a11yProps(1)}
+              />
+              <Tab
+                label="About"
+                className={classes.tabStyle}
+                {...a11yProps(2)}
               />
             </Tabs>
           </Paper>
@@ -138,28 +143,42 @@ export const Main: React.FC<{
             }}
           >
             <TabPanel value={tabValue} index={0}>
-              <div style={{ height: "70px" }} />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(event) => {
-                  navigate("/Stats");
-                }}
-              >
-                View Statistics
-              </Button>
+              <div style={{ height: "calc(100vh - 260px)" }}>
+                <div style={{ height: "30px" }} />
+                <Typography style={{ fontSize: "24px", fontWeight: "bold" }}>
+                  {"Welcome to Fire Protection!"}
+                </Typography>
+                <div style={{ height: "60px" }} />
+                <Fab
+                  variant="extended"
+                  color="primary"
+                  style={{ transform: "scale(1.25)" }}
+                  onClick={() => {
+                    navigate("/Stats");
+                  }}
+                >
+                  <Equalizer style={{ paddingRight: "8px" }} />
+                  {"STATISTICS"}
+                </Fab>
+                <div style={{ height: "70px" }} />
+                <Fab
+                  variant="extended"
+                  color="primary"
+                  style={{ transform: "scale(1.25)" }}
+                  onClick={() => {
+                    navigate("/Dashboard");
+                  }}
+                >
+                  <Dashboard style={{ paddingRight: "8px" }} />
+                  {"DASHBOARD"}
+                </Fab>
+              </div>
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
-              <div style={{ height: "70px" }} />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(event) => {
-                  navigate("/Dashboard");
-                }}
-              >
-                View Dashboard
-              </Button>
+              <Resources />
+            </TabPanel>
+            <TabPanel value={tabValue} index={2}>
+              <About />
             </TabPanel>
           </SwipeableViews>
         </div>
