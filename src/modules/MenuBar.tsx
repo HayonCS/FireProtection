@@ -12,7 +12,7 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import { Build, Dashboard, Equalizer, Menu } from "@material-ui/icons";
+import { Build, Dashboard, Equalizer, Info, Menu } from "@material-ui/icons";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Chevron } from "../icons/Chevron";
@@ -172,30 +172,36 @@ export const MenuBar: React.FC<{}> = (props) => {
         >
           <Paper className={classes.menuPanel}>
             <MenuList>
-              <MenuItem
-                style={{ marginBottom: "10px" }}
-                onClick={(event) => {
-                  navigate("/");
+              <Link
+                href="/"
+                color="inherit"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
-                <HomeIcon style={{ color: "#FFF" }} />
-                <Typography
-                  variant="body1"
-                  className={classes.title}
-                  component={"span"}
-                >
-                  <Box
-                    style={{
-                      paddingTop: "2px",
-                      paddingLeft: "6px",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                    }}
+                <MenuItem style={{ marginBottom: "10px", width: "100%" }}>
+                  <HomeIcon style={{ color: "#FFF" }} />
+                  <Typography
+                    variant="body1"
+                    className={classes.title}
+                    component={"span"}
                   >
-                    Home Page
-                  </Box>
-                </Typography>
-              </MenuItem>
+                    <Box
+                      style={{
+                        paddingTop: "2px",
+                        paddingLeft: "6px",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                    >
+                      Home Page
+                    </Box>
+                  </Typography>
+                </MenuItem>
+              </Link>
               <div
                 style={{
                   display: "flex",
@@ -210,75 +216,127 @@ export const MenuBar: React.FC<{}> = (props) => {
                   }}
                 />
               </div>
-              <MenuItem
-                onClick={(event) => {
-                  navigate("/Stats");
+              <Link
+                href="Stats"
+                color="inherit"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
-                <Equalizer style={{ color: "#FFF" }} />
-                <Typography
-                  variant="body1"
-                  className={classes.title}
-                  component={"span"}
-                >
-                  <Box
-                    style={{
-                      paddingTop: "2px",
-                      paddingLeft: "6px",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                    }}
+                <MenuItem style={{ width: "100%" }}>
+                  <Equalizer style={{ color: "#FFF" }} />
+                  <Typography
+                    variant="body1"
+                    className={classes.title}
+                    component={"span"}
                   >
-                    Stats
-                  </Box>
-                </Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={(event) => {
-                  navigate("/Dashboard");
+                    <Box
+                      style={{
+                        paddingTop: "2px",
+                        paddingLeft: "6px",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                    >
+                      Statistics
+                    </Box>
+                  </Typography>
+                </MenuItem>
+              </Link>
+
+              <Link
+                href="Dashboard"
+                color="inherit"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
-                <Dashboard style={{ color: "#FFF" }} />
-                <Typography
-                  variant="body1"
-                  className={classes.title}
-                  component={"span"}
-                >
-                  <Box
-                    style={{
-                      paddingTop: "2px",
-                      paddingLeft: "6px",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                    }}
+                <MenuItem style={{ width: "100%" }}>
+                  <Dashboard style={{ color: "#FFF" }} />
+                  <Typography
+                    variant="body1"
+                    className={classes.title}
+                    component={"span"}
                   >
-                    Dashboard
-                  </Box>
-                </Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={(event) => {
-                  navigate("/Resources");
+                    <Box
+                      style={{
+                        paddingTop: "2px",
+                        paddingLeft: "6px",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                    >
+                      Dashboard
+                    </Box>
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <Link
+                href="Resources"
+                color="inherit"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
-                <Build style={{ color: "#FFF" }} />
-                <Typography
-                  variant="body1"
-                  className={classes.title}
-                  component={"span"}
-                >
-                  <Box
-                    style={{
-                      paddingTop: "2px",
-                      paddingLeft: "6px",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                    }}
+                <MenuItem style={{ width: "100%" }}>
+                  <Build style={{ color: "#FFF" }} />
+                  <Typography
+                    variant="body1"
+                    className={classes.title}
+                    component={"span"}
                   >
-                    Resources
-                  </Box>
-                </Typography>
-              </MenuItem>
+                    <Box
+                      style={{
+                        paddingTop: "2px",
+                        paddingLeft: "6px",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                    >
+                      Resources
+                    </Box>
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <Link
+                href="About"
+                color="inherit"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  textDecoration: "none",
+                }}
+              >
+                <MenuItem style={{ width: "100%" }}>
+                  <Info style={{ color: "#FFF" }} />
+                  <Typography
+                    variant="body1"
+                    className={classes.title}
+                    component={"span"}
+                  >
+                    <Box
+                      style={{
+                        paddingTop: "2px",
+                        paddingLeft: "6px",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                    >
+                      About
+                    </Box>
+                  </Typography>
+                </MenuItem>
+              </Link>
               <div style={{ height: "20px" }} />
             </MenuList>
           </Paper>
