@@ -122,36 +122,38 @@ export const MenuBar: React.FC<{}> = (props) => {
               {"FIRE PROTECTION 311T🔥"}
             </Box>
           </Typography>
-          <Link
-            href="/"
-            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
-          >
-            Home
-          </Link>
-          <Link
-            href="Stats"
-            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
-          >
-            Statistics
-          </Link>
-          <Link
-            href="Dashboard"
-            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
-          >
-            Dashboard
-          </Link>
-          <Link
-            href="Resources"
-            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
-          >
-            Resources
-          </Link>
-          <Link
-            href="About"
-            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
-          >
-            About
-          </Link>
+          <div style={{ marginTop: "-4px" }}>
+            <Link
+              href="/"
+              style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+            >
+              Home
+            </Link>
+            <Link
+              href="Stats"
+              style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+            >
+              Statistics
+            </Link>
+            <Link
+              href="Dashboard"
+              style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="Resources"
+              style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+            >
+              Resources
+            </Link>
+            <Link
+              href="About"
+              style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+            >
+              About
+            </Link>
+          </div>
         </Toolbar>
         <Popover
           open={open}

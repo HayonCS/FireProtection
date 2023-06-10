@@ -395,7 +395,7 @@ export const Stats: React.FC<{}> = (p) => {
 
   const [rowsMB1, setRowsMB1] = React.useState<ManualBuildDataStation[]>([]);
 
-  const columnsWave: GridColumns = [
+  const columnsWave = React.useRef<GridColumns>([
     {
       field: "date",
       headerName: "Date",
@@ -541,7 +541,7 @@ export const Stats: React.FC<{}> = (p) => {
         return <div className={classes.cellStyle}>{label}</div>;
       },
     },
-  ];
+  ]);
 
   const columnsMBAll: GridColumns = [
     {
@@ -934,7 +934,7 @@ export const Stats: React.FC<{}> = (p) => {
                 <Paper>
                   <div style={{ height: "calc(100vh - 200px)" }}>
                     <DataGrid
-                      columns={columnsWave}
+                      columns={columnsWave.current}
                       rows={rowsWave}
                       pagination={true}
                       rowHeight={40}
