@@ -17,7 +17,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { getHHMMSS } from "../utils/DateUtility";
+import { getDateTimeString, getHHMMSS } from "../utils/DateUtility";
 
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
@@ -132,57 +132,56 @@ export const WaveDashboard: React.FC<{}> = (props) => {
 
   const [loading, setLoading] = React.useState(true);
 
-  const retrieveLiveData = () => {
+  const [waveLiveDate, setWaveLiveDate] = React.useState<Date>();
+
+  const retrieveLiveData = (waveDate?: Date) => {
     const request = fetch(
       "http://10.201.20.210:8980/api/get_wave_live",
       options
     );
-    request
-      .then((response) => {
-        if (response.ok) {
-          const jsonResponse = response.json();
-          jsonResponse.then((json) => {
-            const data: WaveData = {
-              id: json[0],
-              date: new Date(json[1] + " " + json[2]),
-              time: new Date(json[1] + " " + json[2]),
-              shift: json[3],
-              part: json[4],
-              board: json[5],
-              recipe: json[6],
-              pallets: json[7],
-              parts: json[8],
-              palletsTotal: json[9],
-              partsTotal: json[10],
-              partTypes: json[11],
-              cycleGoal: json[12],
-              cycleLast: json[13],
-              cycleEfficiency: (json[12] / json[13]) * 100,
-              workActual: json[14],
-              workGoal: json[15],
-              workActualTotal: json[16],
-              workGoalTotal: json[17],
-              efficiency: json[18],
-              efficiencyTotal: json[19],
-              changeover: json[20],
-              downtime: json[21],
-              aheadPart: json[15] - json[14],
-              aheadTotal: json[17] - json[16],
-            };
-            setWaveData(data);
-          });
-        } else {
-          console.log("Failed getting live wave data!");
-        }
-        //setLoading(false);
-      })
-      .finally(() => {
-        //setLoading(false);
-      });
+    request.then((response) => {
+      if (response.ok) {
+        const jsonResponse = response.json();
+        jsonResponse.then((json) => {
+          const data: WaveData = {
+            id: json[0],
+            date: new Date(json[1] + " " + json[2]),
+            time: new Date(json[1] + " " + json[2]),
+            shift: json[3],
+            part: json[4],
+            board: json[5],
+            recipe: json[6],
+            pallets: json[7],
+            parts: json[8],
+            palletsTotal: json[9],
+            partsTotal: json[10],
+            partTypes: json[11],
+            cycleGoal: json[12],
+            cycleLast: json[13],
+            cycleEfficiency: (json[12] / json[13]) * 100,
+            workActual: json[14],
+            workGoal: json[15],
+            workActualTotal: json[16],
+            workGoalTotal: json[17],
+            efficiency: json[18],
+            efficiencyTotal: json[19],
+            changeover: json[20],
+            downtime: json[21],
+            aheadPart: json[15] - json[14],
+            aheadTotal: json[17] - json[16],
+          };
+          setWaveData(data);
+          if (!waveDate) setWaveLiveDate(data.date);
+        });
+      } else {
+        console.log("Failed getting live wave data!");
+      }
+    });
   };
 
-  const retrieveGraphData = () => {
-    const newDate = new Date();
+  const retrieveGraphData = (waveDate?: Date) => {
+    let newDate = new Date();
+    if (waveDate) newDate = waveDate;
     const dateToday =
       newDate.getFullYear() +
       "-" +
@@ -195,66 +194,61 @@ export const WaveDashboard: React.FC<{}> = (props) => {
       `http://10.201.20.210:8980/api/311T_Wave/wave_stats/${dateToday}/${dateToday}`,
       options
     );
-    request
-      .then((response) => {
-        if (response.ok) {
-          const jsonResponse = response.json();
-          jsonResponse.then((json) => {
-            const allData: WaveData[] = json.map((row: any) => {
-              return {
-                id: row[0],
-                date: new Date(row[1] + " " + row[2]),
-                time: new Date(row[1] + " " + row[2]),
-                shift: row[3],
-                part: row[4],
-                board: row[5],
-                recipe: row[6],
-                pallets: row[7],
-                parts: row[8],
-                palletsTotal: row[9],
-                partsTotal: row[10],
-                partTypes: row[11],
-                cycleGoal: row[12],
-                cycleLast: row[13],
-                cycleEfficiency: (row[12] / row[13]) * 100,
-                workActual: row[14],
-                workGoal: row[15],
-                workActualTotal: row[16],
-                workGoalTotal: row[17],
-                efficiency: row[18],
-                efficiencyTotal: row[19],
-                changeover: row[20],
-                downtime: row[21],
-                aheadPart: row[15] - row[14],
-                aheadTotal: row[17] - row[16],
-              } as WaveData;
-            });
-            setFullData(allData);
-            setLoading(false);
+    request.then((response) => {
+      if (response.ok) {
+        const jsonResponse = response.json();
+        jsonResponse.then((json) => {
+          const allData: WaveData[] = json.map((row: any) => {
+            return {
+              id: row[0],
+              date: new Date(row[1] + " " + row[2]),
+              time: new Date(row[1] + " " + row[2]),
+              shift: row[3],
+              part: row[4],
+              board: row[5],
+              recipe: row[6],
+              pallets: row[7],
+              parts: row[8],
+              palletsTotal: row[9],
+              partsTotal: row[10],
+              partTypes: row[11],
+              cycleGoal: row[12],
+              cycleLast: row[13],
+              cycleEfficiency: (row[12] / row[13]) * 100,
+              workActual: row[14],
+              workGoal: row[15],
+              workActualTotal: row[16],
+              workGoalTotal: row[17],
+              efficiency: row[18],
+              efficiencyTotal: row[19],
+              changeover: row[20],
+              downtime: row[21],
+              aheadPart: row[15] - row[14],
+              aheadTotal: row[17] - row[16],
+            } as WaveData;
           });
-        } else {
-          console.log("Failed retrieving graph data!");
-        }
-        //setLoading(false);
-      })
-      .finally(() => {
-        //setLoading(false);
-      });
+          setFullData(allData);
+          setLoading(false);
+        });
+      } else {
+        console.log("Failed retrieving graph data!");
+      }
+    });
   };
 
   React.useEffect(() => {
-    retrieveLiveData();
-    retrieveGraphData();
-  }, []);
+    retrieveLiveData(waveLiveDate);
+    retrieveGraphData(waveLiveDate);
+  }, [waveLiveDate]);
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      retrieveLiveData();
-      retrieveGraphData();
+      retrieveLiveData(waveLiveDate);
+      retrieveGraphData(waveLiveDate);
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [waveLiveDate]);
 
   React.useEffect(() => {
     let gData: GraphData[] = [];
@@ -334,6 +328,7 @@ export const WaveDashboard: React.FC<{}> = (props) => {
         <CircularProgress color="inherit" style={{ marginBottom: "10px" }} />
         <Typography>Loading...</Typography>
       </Backdrop>
+
       <div className={classes.divTotals}>
         <Typography className={classes.title}>{"Total Pallets:"}</Typography>
         <Typography className={classes.labelData1}>
@@ -345,6 +340,19 @@ export const WaveDashboard: React.FC<{}> = (props) => {
         <Typography className={classes.labelData1}>
           {waveData.partsTotal}
         </Typography>
+        <div
+          style={{
+            marginLeft: "auto",
+            display: "flex",
+          }}
+        >
+          <Typography style={{ fontSize: "16px", marginRight: "8px" }}>
+            {"Last Run:"}
+          </Typography>
+          <Typography style={{ fontSize: "16px", fontWeight: "bold" }}>
+            {getDateTimeString(waveLiveDate ?? new Date(0))}
+          </Typography>
+        </div>
       </div>
       <div style={{ display: "flex", marginTop: "-20px" }}>
         <Typography className={classes.title}>{"Pallets:"}</Typography>

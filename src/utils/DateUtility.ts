@@ -1,3 +1,19 @@
+export const getDateString = (date: Date) => {
+  let month = ("0" + (date.getMonth() + 1)).slice(-2);
+  let day = ("0" + date.getDate()).slice(-2);
+  let dateString = month + "/" + day + "/" + date.getFullYear();
+  return dateString;
+};
+
+export const getTimeString = (date: Date) => {
+  let dateString = date.toLocaleTimeString();
+  return dateString;
+};
+
+export const getDateTimeString = (date: Date) => {
+  return getDateString(date) + "\xa0\xa0\xa0\xa0" + getTimeString(date);
+};
+
 export const getShift = (date: Date) => {
   var shiftFirst = new Date(date.getTime());
   var shiftSecond = new Date(date.getTime());
@@ -54,38 +70,16 @@ export const getDateStringNext = () => {
   return dateString;
 };
 
-export const getTimeString = (date: Date) => {
-  var hour = ("0" + date.getHours()).slice(-2);
-  var min = ("0" + date.getMinutes()).slice(-2);
-  var dateString = hour + ":" + min;
-  return dateString;
-};
-
 // export const getTimeString = (date: Date) => {
 //   var hour = ("0" + date.getHours()).slice(-2);
 //   var min = ("0" + date.getMinutes()).slice(-2);
-//   var sec = ("0" + date.getSeconds()).slice(-2);
-//   var dateString = hour + ":" + min + ":" + sec;
+//   var dateString = hour + ":" + min;
 //   return dateString;
 // };
 
 export const getTimeStringConnection = (date: Date) => {
   var dateString = date.toLocaleTimeString();
   return dateString;
-};
-
-export const getDateTime = (
-  date: Date,
-  hr: number,
-  min: number,
-  sec: number
-) => {
-  let d = new Date(date.getTime());
-  d.setHours(hr);
-  d.setMinutes(min);
-  d.setSeconds(sec);
-  d.setMilliseconds(0);
-  return d;
 };
 
 export const getHHMMSS = (minutes: number) => {
