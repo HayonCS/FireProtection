@@ -145,7 +145,14 @@ export const Main: React.FC<{
             <TabPanel value={tabValue} index={0}>
               <div style={{ height: "calc(100vh - 260px)" }}>
                 <div style={{ height: "30px" }} />
-                <Typography style={{ fontSize: "24px", fontWeight: "bold" }}>
+                <Typography
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "bold",
+                    cursor: "default",
+                    userSelect: "none",
+                  }}
+                >
                   {"Welcome to Fire Protection!"}
                 </Typography>
                 <div style={{ height: "60px" }} />

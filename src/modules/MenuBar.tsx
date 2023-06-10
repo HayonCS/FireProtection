@@ -56,7 +56,7 @@ const useStyles = makeStyles(() => ({
   menuPanel: {
     backgroundColor: GentexBlue,
     width: "200px",
-    height: "calc(100vh - 600px)",
+    height: "100%",
     color: "#FFF",
   },
 }));
@@ -242,6 +242,7 @@ export const MenuBar: React.FC<{}> = (props) => {
                   </Box>
                 </Typography>
               </MenuItem>
+              <div style={{ height: "20px" }} />
             </MenuList>
           </Paper>
         </Popover>
