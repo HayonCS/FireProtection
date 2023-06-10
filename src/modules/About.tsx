@@ -1,10 +1,5 @@
 import * as React from "react";
-import { Link, makeStyles, Paper, Typography } from "@material-ui/core";
-
-function openInNewTab(url: string) {
-  const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-  if (newWindow) newWindow.opener = null;
-}
+import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -1,14 +1,11 @@
 import {
   AppBar,
   Box,
-  Collapse,
-  Fade,
   makeStyles,
   MenuItem,
   MenuList,
   Paper,
   Popover,
-  Popper,
   SvgIcon,
   Toolbar,
   Typography,
@@ -17,10 +14,9 @@ import {
 } from "@material-ui/core";
 import { Build, Dashboard, Equalizer, Menu } from "@material-ui/icons";
 import * as React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Chevron } from "../icons/Chevron";
 import { GentexLogo } from "../icons/GentexLogo";
-import noah from "../icons/noah.jpg";
 import { GentexBlue } from "../styles/theme";
 
 const useStyles = makeStyles(() => ({
