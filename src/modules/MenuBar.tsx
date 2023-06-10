@@ -125,6 +125,9 @@ export const MenuBar: React.FC<{}> = (props) => {
               {"FIRE PROTECTION 311T🔥"}
             </Box>
           </Typography>
+          <div
+            style={{ width: "30px", height: "10px", backgroundColor: "green" }}
+          />
         </Toolbar>
         <Popover
           open={open}
@@ -169,10 +172,18 @@ export const MenuBar: React.FC<{}> = (props) => {
               </MenuItem>
               <div
                 style={{
-                  borderTop: "2px solid rgba(255, 255, 255, 1)",
-                  paddingBottom: "10px",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
-              />
+              >
+                <div
+                  style={{
+                    borderTop: "2px solid rgba(255, 255, 255, 1)",
+                    paddingBottom: "10px",
+                    width: "180px",
+                  }}
+                />
+              </div>
               <MenuItem
                 onClick={(event) => {
                   navigate("/Stats");
