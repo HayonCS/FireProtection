@@ -13,6 +13,7 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Link,
 } from "@material-ui/core";
 import { Build, Dashboard, Equalizer, Menu } from "@material-ui/icons";
 import * as React from "react";
@@ -125,9 +126,36 @@ export const MenuBar: React.FC<{}> = (props) => {
               {"FIRE PROTECTION 311T🔥"}
             </Box>
           </Typography>
-          <div
-            style={{ width: "30px", height: "10px", backgroundColor: "green" }}
-          />
+          <Link
+            href="/"
+            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+          >
+            Home
+          </Link>
+          <Link
+            href="Stats"
+            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+          >
+            Statistics
+          </Link>
+          <Link
+            href="Dashboard"
+            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="Resources"
+            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+          >
+            Resources
+          </Link>
+          <Link
+            href="About"
+            style={{ fontSize: "16px", color: "#FFF", marginRight: "30px" }}
+          >
+            About
+          </Link>
         </Toolbar>
         <Popover
           open={open}

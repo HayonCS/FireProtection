@@ -20,6 +20,7 @@ root.render(
     <Routes>
       <Route path="/Stats" element={<Stats />} />
       <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/About" element={<Main tabIndex={2} />} />
       <Route path="/Resources" element={<Main tabIndex={1} />} />
       <Route path="/" element={<Main />} />
     </Routes>
