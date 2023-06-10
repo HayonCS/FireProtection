@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import SwipeableViews from "react-swipeable-views";
 import { MenuBar } from "../modules/MenuBar";
 import { Resources } from "../modules/Resources";
-import { Dashboard, Equalizer } from "@material-ui/icons";
+import { Build, Dashboard, Equalizer, Home, Info } from "@material-ui/icons";
 import { About } from "../modules/About";
 
 const useStyles = makeStyles(() => ({
@@ -118,17 +118,32 @@ export const Main: React.FC<{
               centered
             >
               <Tab
-                label="Home"
+                label={
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Home style={{ marginRight: "4px" }} />
+                    Home
+                  </div>
+                }
                 className={classes.tabStyle}
                 {...a11yProps(0)}
               />
               <Tab
-                label="Resources"
+                label={
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Build style={{ marginRight: "4px" }} />
+                    Resources
+                  </div>
+                }
                 className={classes.tabStyle}
                 {...a11yProps(1)}
               />
               <Tab
-                label="About"
+                label={
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Info style={{ marginRight: "4px" }} />
+                    About
+                  </div>
+                }
                 className={classes.tabStyle}
                 {...a11yProps(2)}
               />

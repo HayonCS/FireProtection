@@ -122,7 +122,9 @@ export const ManualBuildDashboard: React.FC<{}> = (props) => {
 
   const [loading, setLoading] = React.useState(true);
 
-  const retrieveLiveData = () => {
+  const [waveLiveDate, setWaveLiveDate] = React.useState<Date>();
+
+  const retrieveLiveData = (waveDate?: Date) => {
     const request = fetch(
       "http://10.201.20.210:8980/api/get_wave_live",
       options
@@ -160,6 +162,7 @@ export const ManualBuildDashboard: React.FC<{}> = (props) => {
               aheadTotal: json[17] - json[16],
             };
             setWaveData(data);
+            if (!waveDate) setWaveLiveDate(data.date);
           });
         } else {
           console.log("Failed getting live wave data!");
@@ -171,12 +174,13 @@ export const ManualBuildDashboard: React.FC<{}> = (props) => {
       });
   };
 
-  const getStationData = (station: number) => {
-    const newDate = new Date();
+  const getStationData = (station: number, waveDate?: Date) => {
+    let newDate = new Date();
+    if (waveDate) newDate = waveDate;
     const dateToday =
       newDate.getFullYear() +
       "-" +
-      (newDate.getMonth() < 9 ? "0" : "") +
+      (newDate.getMonth() < 10 ? "0" : "") +
       (newDate.getMonth() + 1) +
       "-" +
       (newDate.getDate() < 10 ? "0" : "") +
@@ -251,14 +255,14 @@ export const ManualBuildDashboard: React.FC<{}> = (props) => {
     return count > 0 ? total / count : 0;
   };
 
-  const retrieveGraphData = () => {
+  const retrieveGraphData = (waveDate?: Date) => {
     //setMBData([]);
-    getStationData(1);
-    getStationData(2);
-    getStationData(3);
-    getStationData(4);
-    getStationData(5);
-    getStationData(6);
+    getStationData(1, waveDate);
+    getStationData(2, waveDate);
+    getStationData(3, waveDate);
+    getStationData(4, waveDate);
+    getStationData(5, waveDate);
+    getStationData(6, waveDate);
   };
 
   React.useEffect(() => {
@@ -333,18 +337,18 @@ export const ManualBuildDashboard: React.FC<{}> = (props) => {
   }, [graphData]);
 
   React.useEffect(() => {
-    retrieveLiveData();
-    retrieveGraphData();
-  }, []);
+    retrieveLiveData(waveLiveDate);
+    retrieveGraphData(waveLiveDate);
+  }, [waveLiveDate]);
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      retrieveLiveData();
-      retrieveGraphData();
+      retrieveLiveData(waveLiveDate);
+      retrieveGraphData(waveLiveDate);
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [waveLiveDate]);
 
   return (
     <div className={classes.root}>
