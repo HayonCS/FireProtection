@@ -103,7 +103,8 @@ const useStyles = makeStyles(() => ({
     height: "100%",
   },
   cellStyle: {
-    padding: "none",
+    paddingLeft: "8px",
+    width: "100%",
     alignItems: "left",
     color: "black",
     fontSize: "16px",
@@ -517,9 +518,22 @@ export const Stats: React.FC<{}> = (p) => {
       headerName: "Efficiency",
       width: 180,
       renderCell: function cellDisplay(cellValue: any) {
-        const label =
-          (Math.round(cellValue.value * 100) / 100).toFixed(2) + "%";
-        return <div className={classes.cellStyle}>{label}</div>;
+        const value = Math.round(cellValue.value * 100) / 100;
+        const label = value.toFixed(2) + "%";
+        return (
+          <div
+            className={classes.cellStyle}
+            style={
+              value >= 95
+                ? { backgroundColor: "rgb(0, 200, 0)" }
+                : value >= 85
+                ? { backgroundColor: "orange" }
+                : { backgroundColor: "red" }
+            }
+          >
+            {label}
+          </div>
+        );
       },
     },
     {
