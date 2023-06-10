@@ -44,7 +44,7 @@ export const Resources: React.FC<{}> = (props) => {
     <div className={classes.root}>
       <div className={classes.layout}>
         <Typography className={classes.title}>
-          {"List of resources for Fire Protection"}
+          {"Resources for Fire Protection"}
         </Typography>
         <Typography className={classes.linkStyle}>
           <Link
