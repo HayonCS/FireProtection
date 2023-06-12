@@ -556,6 +556,7 @@ export const WaveDashboard: React.FC<{}> = (props) => {
                   Math.max(...graphData.map((o) => o.efficiency)) + 10
                 ),
               ]}
+              allowDataOverflow={true}
             >
               <Label
                 value="Efficiency"
